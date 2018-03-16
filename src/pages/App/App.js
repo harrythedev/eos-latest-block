@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
-import logo from 'assets/images/logo.svg';
+import Eos from 'eosjs';
+import { BlockInfo, Button, Header } from 'components';
 import './App.css';
 
+
 class App extends Component {
+  state = {
+    block: null,
+  };
+
+  eos = Eos.Testnet({ httpEndpoint: 'http://t1readonly.eos.io' });
+
+  getBlockDetails = () => {
+    this.eos
+      .getInfo({})
+      .then(chainInfo => this.eos.getBlock(chainInfo.head_block_num))
+      .then(block => this.setState({ block }))
+      .catch(error => console.error(error));
+  }
+
   render() {
+    const { block } = this.state;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Header />
+        <section>
+          <Button onClick={this.getBlockDetails}>See Latest Block</Button>
+        </section>
+        <BlockInfo block={block} />
       </div>
     );
   }
