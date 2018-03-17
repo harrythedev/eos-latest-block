@@ -8,29 +8,43 @@ import './App.css';
 export default class App extends Component {
   state = {
     block: null,
+    loading: false,
+    error: false,
   };
 
   eos = Eos.Testnet({ httpEndpoint: process.env.REACT_APP_EOS_CHAIN_URL });
 
-  getBlockDetails = async () => {
-    try {
-      const chainInfo = await this.eos.getInfo({});
-      const block = await this.eos.getBlock(chainInfo.head_block_num);
-      this.setState({ block });
-      copy(JSON.stringify(block));
-    } catch (e) {
-      console.log(e);
-      // TODO: Display error message to user
-    }
+  getBlockDetails = () => {
+    if (this.state.loading) return; // only one call at a time!
+
+    // reset error to false and loading to true, and then get the block info
+    this.setState({ error: false, loading: true }, async () => {
+      try {
+        const chainInfo = await this.eos.getInfo({});
+        const block = await this.eos.getBlock(chainInfo.head_block_num);
+        this.setState({ block, loading: false });
+        copy(JSON.stringify(block));
+      } catch (e) {
+        console.error(e);
+        this.setState({ error: true, loading: false });
+      }
+    });
   }
 
   render() {
-    const { block } = this.state;
+    const { block, error, loading } = this.state;
     return (
       <div className="App">
         <Header />
         <section>
-          <Button onClick={this.getBlockDetails}>See Latest Block</Button>
+          <Button
+            error={error}
+            errorText="Oops! Try again."
+            loading={loading}
+            onClick={this.getBlockDetails}
+          >
+            See Latest Block
+          </Button>
         </section>
         <section>
           <BlockInfo block={block} />

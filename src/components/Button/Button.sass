@@ -17,9 +17,27 @@ button
     background: transparent
     user-select: none
     outline: none
+    &.error
+      background-color: red
+      animation: shake 140ms 2 linear
     &:hover
       background-color: $button-primary-background-hover
       border: 2px solid transparent
-      box-shadow: 0 0 9px $shadow
+      box-shadow: 0 0 9px $button-primary-background-hover
+      svg rect
+        fill: $primary
+    &:active
+      background-color: lighten($button-primary-background-hover, 20%)
     @media screen and (max-width: 413px)
-        width: 100%
+      width: 100%
+  .loader
+    svg rect
+      fill: $button-primary-background-hover
+
+  @keyframes shake
+    0%
+      transform: translate(6px, 0)
+    50%
+      transform: translate(-6px, 0)
+    100%
+      transform: translate(0, 0)
