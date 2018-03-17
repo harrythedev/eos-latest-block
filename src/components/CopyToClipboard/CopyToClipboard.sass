@@ -1,0 +1,70 @@
+$container: #41484b
+$icon: white
+
+@mixin flex-center
+  display: flex
+  justify-content: center
+  align-items: center
+
+@mixin pos-center
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  margin: auto
+
+section#copy-to-clipboard
+  padding: 0
+  .container
+    @include flex-center
+    height: 115px
+    width: 115px
+    padding: 0 24px
+    background: $container
+    border-radius: 10px
+    box-shadow: rgba(black, 0.25) 0 16px 36px
+    transform: scale(0.5)
+
+  .container > button
+    position: relative
+    display: block
+    width: 25%
+    height: 100%
+    border: none
+    background: transparent
+    cursor: pointer
+    z-index: 99
+    outline: none
+    backface-visibility: hidden
+    -webkit-user-select: none
+    -webkit-touch-callout: none
+    > div
+      @include pos-center
+
+  .copy
+    &.is-active
+      .bottom
+        animation: copy 0.8s ease-out
+    .top, .bottom
+      background: $container
+      top: -10px
+      left: -12px
+    .top
+      width: 29px
+      height: 34px
+      border-top: 4px solid $icon
+      border-left: 4px solid $icon
+      border-radius: 4px 0
+    .bottom
+      width: 32px
+      height: 38px
+      border: 4px solid $icon
+      border-radius: 4px
+      transform: translate(9px,10px)
+
+  @keyframes copy
+    0%
+      transform: translate(0,0)
+    100%
+      transform: translate(9px,10px)
