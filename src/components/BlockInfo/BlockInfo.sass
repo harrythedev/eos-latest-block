@@ -1,0 +1,22 @@
+@import 'assets/styles/_colors.scss'
+
+div.block-table-container
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  border-top: 2px solid $primary
+  text-transform: uppercase
+  max-width: 1280px
+  > div
+  .label-column
+    grid-column: 1
+    padding: 0 18px 0 0
+    border-right: 0px solid $primary
+    text-align: right
+    font-weight: 600
+  .value-column
+    grid-column: 2
+    padding: 0 0 0 18px
+    border-left: 2px solid $primary    
+    text-align: left
+    overflow: auto
+    word-wrap: break-word

@@ -6,17 +6,20 @@ import './App.css';
 
 class App extends Component {
   state = {
-    block: null,
+    block: undefined,
   };
 
   eos = Eos.Testnet({ httpEndpoint: 'http://t1readonly.eos.io' });
 
-  getBlockDetails = () => {
-    this.eos
-      .getInfo({})
-      .then(chainInfo => this.eos.getBlock(chainInfo.head_block_num))
-      .then(block => this.setState({ block }))
-      .catch(error => console.error(error));
+  getBlockDetails = async () => {
+    try {
+      const chainInfo = await this.eos.getInfo({});
+      const block = await this.eos.getBlock(chainInfo.head_block_num);
+      this.setState({ block });
+    } catch (e) {
+      console.log(e);
+      // TODO: Display error message to user
+    }
   }
 
   render() {
@@ -27,7 +30,9 @@ class App extends Component {
         <section>
           <Button onClick={this.getBlockDetails}>See Latest Block</Button>
         </section>
-        <BlockInfo block={block} />
+        <section>
+          <BlockInfo block={block} />
+        </section>
       </div>
     );
   }

@@ -1,14 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { BlockTableRow } from 'components';
+import './BlockInfo.css';
 
 
 const BlockInfo = ({ block }) => {
   if (!block) return null;
-  console.log(block);
   return (
-    <div>
-      <p>Block Number: {block.block_num}</p>
-      <p>Producer: {block.producer}</p>
+    <div className="block-table-container">
+      <BlockTableRow label="Block Number" value={block.block_num.toString()} />
+      <BlockTableRow label="Producer" value={block.producer} />
+      <BlockTableRow label="Timestamp" value={block.timestamp} />
+      <BlockTableRow label="Block ID" value={block.id} />
+      <BlockTableRow label="Prior Block ID" value={block.previous} />
+      <BlockTableRow label="Reference Block Header" value={block.ref_block_prefix} />
+      <BlockTableRow label="Tx Merkel Root" value={block.transaction_merkle_root} />
+      <BlockTableRow label="Producer Signature" value={block.producer_signature} />
     </div>
   );
 }
