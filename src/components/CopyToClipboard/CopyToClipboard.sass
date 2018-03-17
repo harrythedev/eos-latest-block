@@ -1,5 +1,6 @@
-$container: #41484b
 $icon: white
+$container: #41484b
+$container-hover: lighten($container, 8%)
 
 @mixin flex-center
   display: flex
@@ -20,20 +21,23 @@ section#copy-to-clipboard
     @include flex-center
     height: 115px
     width: 115px
-    padding: 0 24px
+    padding: 0
     background: $container
     border-radius: 10px
     box-shadow: rgba(black, 0.25) 0 16px 36px
+    cursor: pointer
     transform: scale(0.5)
+    transition: background 0.2s linear
+    &:hover
+      background: $container-hover
 
   .container > button
     position: relative
     display: block
-    width: 25%
+    width: 100%
     height: 100%
     border: none
     background: transparent
-    cursor: pointer
     z-index: 99
     outline: none
     backface-visibility: hidden
@@ -47,7 +51,7 @@ section#copy-to-clipboard
       .bottom
         animation: copy 0.8s ease-out
     .top, .bottom
-      background: $container
+      background: transparent
       top: -10px
       left: -12px
     .top

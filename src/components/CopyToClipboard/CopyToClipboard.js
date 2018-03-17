@@ -28,8 +28,8 @@ export default class CopyToClipboard extends Component {
     if (!block) return null;
     return (
       <section id="copy-to-clipboard">
-        <div className="container">
-          <button className={`copy${copying ? ' is-active' : ''}`} onClick={this.copyBlockToClipboard}>
+        <div className="container" onClick={this.copyBlockToClipboard}>
+          <button className={`copy${copying ? ' is-active' : ''}`}>
             <div className="top" />
             <div className="bottom" />
           </button>
