@@ -33,6 +33,7 @@ export default class CopyToClipboard extends Component {
             <div className="top" />
             <div className="bottom" />
           </button>
+          <span>COPY</span>
         </div>
       </section>
     );
