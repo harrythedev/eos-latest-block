@@ -10,7 +10,7 @@ export default class App extends Component {
     block: null,
   };
 
-  eos = Eos.Testnet({ httpEndpoint: 'http://t1readonly.eos.io' }); // TODO: Move to .env
+  eos = Eos.Testnet({ httpEndpoint: process.env.REACT_APP_EOS_CHAIN_URL });
 
   getBlockDetails = async () => {
     try {
