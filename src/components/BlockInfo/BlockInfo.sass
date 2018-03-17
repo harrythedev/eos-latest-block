@@ -1,6 +1,12 @@
 @import 'assets/styles/_colors.scss'
 
 div.block-table-container
+  transition: opacity 300ms ease-in-out    
+  &.active
+    opacity: 1
+  &.inactive
+    opacity: 0
+div.block-table
   display: grid
   grid-template-columns: repeat(2, 1fr)
   border-top: 2px solid $primary

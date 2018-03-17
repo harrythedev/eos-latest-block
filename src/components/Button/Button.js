@@ -10,9 +10,11 @@ const Button = ({ children, error, errorText, loading, onClick }) => {
   if (error) buttonContent = errorText;
 
   return (
-    <button className={`primary${error ? ' error': ''}`} onClick={onClick}>
-      {buttonContent}
-    </button>  
+    <section>
+      <button className={`primary${error ? ' error': ''}`} onClick={onClick}>
+        {buttonContent}
+      </button>
+    </section>
   );
 };
 

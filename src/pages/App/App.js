@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Eos from 'eosjs';
 import copy from 'clipboard-copy';
-import { BlockInfo, Button, CopyToClipboard, Header } from 'components';
+import { BlockInfo, Button, Header } from 'components';
 import './App.css';
 
 
@@ -36,20 +36,15 @@ export default class App extends Component {
     return (
       <div className="App">
         <Header />
-        <section>
-          <Button
-            error={error}
-            errorText="Oops! Try again."
-            loading={loading}
-            onClick={this.getBlockDetails}
-          >
-            See Latest Block
-          </Button>
-        </section>
-        <section>
-          <BlockInfo block={block} />
-        </section>
-        <CopyToClipboard block={block} />
+        <Button
+          error={error}
+          errorText="Oops! Try again."
+          loading={loading}
+          onClick={this.getBlockDetails}
+        >
+          See Latest Block
+        </Button>
+        <BlockInfo id="block-info" block={block} loading={loading} />
       </div>
     );
   }
