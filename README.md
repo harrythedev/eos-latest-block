@@ -8,9 +8,8 @@ Get information about the latest block on the EOS testnet.
 
 Create a `.env` file at the project root with the following:
 * `NODE_PATH=src/` (will allow for absolute imports into components relative to the `src` directory)
+* `REACT_APP_EOS_CHAIN_URL=http://t1readonly.eos.io` (or the chain of your choice)
 
-## Coming Up
-* Style up the blockInfo table. https://www.pinterest.com/pin/186899453262098388/. (It will look nothing like that though, haha.)
-* Add Copy button for copying block JSON to clipboard. Include tooltip.
-* Provide user feedback on error retrieving block
-* Loading indicator (part of button?)
+### Install & Run!
+1. `yarn`
+1. `yarn start`
